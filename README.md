@@ -1,0 +1,1 @@
+# image-optimizer-gradle-plugin
