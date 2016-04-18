@@ -1,0 +1,43 @@
+group 'org.fabiomsr.drawableoptimizer'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.5.0'
+    compile 'com.github.depsypher:pngtastic:pngtastic-1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+publishing {
+    repositories {
+        maven {
+            url mavenLocal()
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            groupId 'org.fabiomsr.drawableoptimizer'
+            artifactId 'drawable-optimizer-gradle-plugin'
+            version '1.0-SNAPSHOT'
+
+            from components.java
+        }
+    }
+}

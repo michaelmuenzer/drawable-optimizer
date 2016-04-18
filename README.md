@@ -1,1 +1,3 @@
-# image-optimizer-gradle-plugin
+# Override
+
+Gradle plugin to optimize png files in Android project.
