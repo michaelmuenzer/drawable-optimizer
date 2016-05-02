@@ -5,7 +5,10 @@ import org.fabiomsr.drawableoptimizer.optimizer.Optimizer
 import org.fabiomsr.drawableoptimizer.optimizer.OptimizerFactory
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.OutputDirectories
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.incremental.IncrementalTaskInputs
 
@@ -20,13 +23,21 @@ class DrawableOptimizerTask extends DefaultTask {
     @Input
     def optimizerType
 
-    @InputFiles
+    @InputDirectory
     def drawableDirs
+
+    @OutputDirectory
+    def outputDir
+
+    int compressionLevel
+
+    int iterations
+
+    String logLevel
 
     @TaskAction
     void optimize(IncrementalTaskInputs inputs) {
-        println "$module:$name"
-        println drawableDirs
+        println ":$module:$name"
 
         def optimizer = OptimizerFactory.INSTANCE.getOptimizer(optimizerType)
 
@@ -37,9 +48,8 @@ class DrawableOptimizerTask extends DefaultTask {
             }else {
                 def filePath = changedFile.absolutePath
 
-                if(filePath =~ ~/.*\.png/ &&
-                    !filePath.contains(".9.png")) {
-                    optimizer.optimize(filePath, filePath)
+                if(filePath =~ ~/.*\.png/ && !filePath.contains(".9.png")) {
+                    optimizer.optimize(compressionLevel, iterations, logLevel, filePath)
                 }
             }
         }
@@ -47,8 +57,6 @@ class DrawableOptimizerTask extends DefaultTask {
 
     def optimizeDirectory(File directory, Optimizer optimizer) {
         directory.eachFileMatch(~/drawable(.)*/) {
-            println "Dir out of date: ${it.name}"
-
             def imageFiles = []
             it.eachFileMatch(FileType.FILES, ~/.*\.png/) { drawable ->
                 if (!drawable.name.contains(".9.png")) {
@@ -57,7 +65,7 @@ class DrawableOptimizerTask extends DefaultTask {
             }
 
             if (imageFiles) {
-                optimizer.optimize(it.name, *imageFiles)
+                optimizer.optimize(compressionLevel, iterations, logLevel, *imageFiles)
             }
         }
     }

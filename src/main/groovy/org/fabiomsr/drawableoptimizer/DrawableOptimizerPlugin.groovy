@@ -28,18 +28,25 @@ class DrawableOptimizerPlugin implements Plugin<Project> {
         project.extensions.create('drawableOptimizer', DrawableOptimizerExtension)
 
         variants.all { variant ->
-
             def variantName = variant.name.capitalize()
             def ext = project.extensions['drawableOptimizer'] as DrawableOptimizerExtension
+
+            if(ext.onlyOnRelease && !'release'.equalsIgnoreCase(variant.buildType.name) ){
+                return
+            }
 
             def task = project.tasks.create("optimize${variantName}Drawable", DrawableOptimizerTask) {
                 it.description = "Drawable optimization"
                 it.module = project.name
-                it.optimizerType = ext.optimizer
+                it.optimizerType    = ext.optimizer
+                it.compressionLevel = ext.compressionLevel
+                it.iterations   = ext.iterations
+                it.logLevel     = ext.logLevel
                 it.drawableDirs = variant.mergeResources.outputDir
+                it.outputDir    = variant.mergeResources.outputDir
             }
 
-            variant.mergeResources.doLast{ task.execute() }
+            variant.mergeResources.doLast { task.execute() }
         }
     }
 }
