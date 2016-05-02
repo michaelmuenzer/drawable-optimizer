@@ -1,6 +1,5 @@
 package org.fabiomsr.drawableoptimizer.task
 
-import com.googlecode.pngtastic.PngtasticOptimizer
 import groovy.io.FileType
 import org.fabiomsr.drawableoptimizer.optimizer.Optimizer
 import org.fabiomsr.drawableoptimizer.optimizer.OptimizerFactory
@@ -35,6 +34,13 @@ class DrawableOptimizerTask extends DefaultTask {
             def changedFile = it.file
             if (changedFile.isDirectory()) {
                 optimizeDirectory(changedFile, optimizer)
+            }else {
+                def filePath = changedFile.absolutePath
+
+                if(filePath =~ ~/.*\.png/ &&
+                    !filePath.contains(".9.png")) {
+                    optimizer.optimize(filePath, filePath)
+                }
             }
         }
     }
@@ -45,12 +51,14 @@ class DrawableOptimizerTask extends DefaultTask {
 
             def imageFiles = []
             it.eachFileMatch(FileType.FILES, ~/.*\.png/) { drawable ->
-                if (drawable.name.contains(".9.png")) {
+                if (!drawable.name.contains(".9.png")) {
                     imageFiles << drawable.absolutePath
                 }
             }
 
-            optimizer.optimize(it.name, *imageFiles)
+            if (imageFiles) {
+                optimizer.optimize(it.name, *imageFiles)
+            }
         }
     }
 

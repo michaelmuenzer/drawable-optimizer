@@ -9,17 +9,14 @@ import org.fabiomsr.drawableoptimizer.optimizer.impl.ZopfliOptimizer
 enum OptimizerFactory {
     INSTANCE;
 
-    public static DEFAULT = 'default'
-    public static ZOPFLI = 'zopfli'
-
     def optimizers
 
     private OptimizerFactory() {
-        optimizers = [(DEFAULT): new DefaultOptimizer(),
-                      (ZOPFLI) : new ZopfliOptimizer()]
+        optimizers = [(OptimizerConstants.DEFAULT): new DefaultOptimizer(),
+                      (OptimizerConstants.ZOPFLI) : new ZopfliOptimizer()]
     }
 
-    def Optimizer getOptimizer(String optimizerType){
+    def Optimizer getOptimizer(def optimizerType){
         return optimizers[optimizerType] as Optimizer
     }
 
