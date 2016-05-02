@@ -47,6 +47,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
 publishing {
     repositories {
         maven {
@@ -61,9 +66,15 @@ publishing {
             version '1.0.0'
 
             from components.java
+
+            artifact (sourcesJar) {
+                classifier "sources"
+            }
         }
     }
 }
+
+
 
 bintray {
     user = project.hasProperty('BINTRAY_USER') ? project.property('BINTRAY_USER') : System.getenv('BINTRAY_USER')

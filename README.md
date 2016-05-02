@@ -4,6 +4,13 @@ Gradle plugin to optimize png files in a Android project. Con este plugin puedes
 
 Para realizar la tarea de optimización el plugin hace uso de la librería [Pngtastic] que ofrece su propio compresor y [Zopfli] que ofrece una ridiculously good compression ratios a cambio de compression speed.
 
+## Why should i use this plugin
+
+You can find an explanation from [Colt McAnlis] about why you should optimize your pngs [Reducing PNG file Size] and [Smaller PNGs, and Android’s AAPT tool]
+
+## Usage
+
+Simply click on __Sync project with gradle files__ button
 
 ## Download & installation
 
@@ -71,3 +78,6 @@ License
 
 [Pngtastic]: https://github.com/depsypher/pngtastic
 [Zopfli]: https://github.com/google/zopfli
+[Colt McAnlis]: https://medium.com/@duhroach
+[Reducing PNG file Size]: https://medium.com/@duhroach/reducing-png-file-size-8473480d0476#.vq7mjuvxx
+[Smaller PNGs, and Android’s AAPT tool]: https://medium.com/@duhroach/smaller-pngs-and-android-s-aapt-tool-4ce38a24019d#.4hcjre4yi
