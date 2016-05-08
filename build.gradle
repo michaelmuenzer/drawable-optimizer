@@ -1,6 +1,8 @@
 
+def pluginVersion = '1.0.2'
+
 group 'org.fabiomsr'
-version '1.0.0'
+version pluginVersion
 
 buildscript {
     repositories {
@@ -41,7 +43,7 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
 
-    compile group:'com.android.tools.build', name:'gradle', version:'1.5.0'
+    compile group:'com.android.tools.build', name:'gradle', version:'2.1.0'
     compile group:'com.github.depsypher', name:'pngtastic',  version:'1.2'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
@@ -63,7 +65,7 @@ publishing {
         maven(MavenPublication) {
             groupId 'org.fabiomsr'
             artifactId 'drawable-optimizer-gradle-plugin'
-            version '1.0.0'
+            version pluginVersion
 
             from components.java
 
@@ -89,9 +91,9 @@ bintray {
         vcsUrl = 'https://github.com/fabiomsr/drawable-optimizer-gradle-plugin.git'
 
         version {
-            name = '1.0.0'
+            name = pluginVersion
             desc = 'Drawable Optimizer Gradle Plugin 1.0 Snapshot'
-            vcsTag = '1.0.0'
+            vcsTag = pluginVersion
             attributes = ['gradle-plugin': 'org.fabiomsr:drawable-optimizer-gradle-plugin']
         }
     }

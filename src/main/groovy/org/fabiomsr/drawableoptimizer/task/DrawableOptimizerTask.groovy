@@ -26,11 +26,10 @@ class DrawableOptimizerTask extends DefaultTask {
     @InputDirectory
     def drawableDirs
 
-    @OutputDirectory
-    def outputDir
-
+    @Input
     int compressionLevel
 
+    @Input
     int iterations
 
     String logLevel
@@ -49,7 +48,7 @@ class DrawableOptimizerTask extends DefaultTask {
                 def filePath = changedFile.absolutePath
 
                 if(filePath =~ ~/.*\.png/ && !filePath.contains(".9.png")) {
-                    optimizer.optimize(compressionLevel, iterations, logLevel, filePath)
+                    optimizer.optimize(project, compressionLevel, iterations, logLevel, changedFile)
                 }
             }
         }
@@ -60,12 +59,12 @@ class DrawableOptimizerTask extends DefaultTask {
             def imageFiles = []
             it.eachFileMatch(FileType.FILES, ~/.*\.png/) { drawable ->
                 if (!drawable.name.contains(".9.png")) {
-                    imageFiles << drawable.absolutePath
+                    imageFiles << drawable
                 }
             }
 
             if (imageFiles) {
-                optimizer.optimize(compressionLevel, iterations, logLevel, *imageFiles)
+                optimizer.optimize(project, compressionLevel, iterations, logLevel, imageFiles)
             }
         }
     }
