@@ -33,10 +33,6 @@ class DrawableOptimizerPlugin implements Plugin<Project> {
 
         def ext = project.extensions['drawableOptimizer'] as DrawableOptimizerExtension
 
-        if(ext.optimizer == OptimizerConstants.ZOPFLI){
-            ZopfliFileSystemUtils.copyZopfliToBuildFolder(project)
-        }
-
         variants.all { variant ->
             def variantName = variant.name.capitalize()
 
