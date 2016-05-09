@@ -1,45 +1,49 @@
 ## Override
 
-Gradle plugin to optimize png files in a Android project. Con este plugin puedes optimizar los pngs de tu proyecto para esto el plugin opera sobre la carpeta en donde se ha hecho el merge de recursos, normalmente `app\build\intermediates\res\merged`. Al operar sobre esta carpeta se mantienen los pngs originales en la carpeta `res` y la optimización puede ser reversible en cualquier momento simplemente con un `clean`.
+Gradle plugin to optimize png files within an Android project.
 
-Para realizar la tarea de optimización el plugin hace uso de la librería [Pngtastic] que ofrece su propio compresor y [Zopfli] que ofrece una ridiculously good compression ratios a cambio de compression speed.
+## How it works ??
 
-## Why should i use this plugin
+With this plugin you will be able to optimize the png files size inside your AndroidStudio project.
+It works over the folder in which the resource merging was executed, by default in a Mac OSX system is `app\build\intermediates\res\merged`.
+
+By doing this, all original png files are kept under /res folder and this optimization could be undone just cleaning the project.
+
+In order to perform an optimization task, this plugin makes use of the Pngtastic library, this library
+is similar to PNG and written in java. It offers 3 different ways of file compression:
+
+  * Pngtastic Default Compression.
+  * ImageOptim Compression.
+  * Zopfli, which offers ridiculously good compression ratios in exchange of low compression speed.
+
+## Why should I use this plugin ?
 
 You can find an explanation from [Colt McAnlis] about why you should optimize your pngs [Reducing PNG file Size] and [Smaller PNGs, and Android’s AAPT tool]
 
 ## Usage
+Just click on __Sync project with gradle files__ button
 
-Simply click on __Sync project with gradle files__ button
-
-## Download & installation
-
+## Download & Installation
 In `build.gradle`
 ```groovy
 buildscript {
     repositories {
         jcenter()
     }
-
     dependencies {
         classpath 'org.fabiomsr:drawable-optimizer-gradle-plugin:1.0.0'
     }
 }
 ```
-
 And in `app\build.gradle`
-
 ```groovy
-// make sure this line comes *after* you apply the Android plugin (apply plugin: 'com.android.application')
+// Make sure this line comes *after* you apply the Android plugin (apply plugin: 'com.android.application')
 apply plugin: 'org.fabiomsr.drawableoptimizer'
 ```
-
 ## Configuration
-
-By default you don't need any configuration but if you want you can configure the following parameters. When you change your configuration you'll need to clean your project.
-
+No configuration is needed by default, but if you want you can configure the following parameters.
+Every time the configuration changes the project must be cleaned.
 In `app\build.gradle`
-
 ```groovy
 drawableOptimizer {
     optimizer = 'zopfli'
@@ -49,33 +53,25 @@ drawableOptimizer {
     logLevel = 'info'
 }
 ```
-
 |     Parameter    |                       Description                       |            Values            |               Default Value               |
 |:----------------:|:-------------------------------------------------------:|:----------------------------:|:-----------------------------------------:|
-| optimizer        | Compressor to use                                       |      zopfli or pngtastic      | zopfli                                    |
-| compressionLevel | The compression level (useful for pngtastic compressor) |          0-9 allowed         | Default is to try them all by brute force |
-| iterations       | Number of compression iterations (useful for zopfli)    |              > 0             | 15                                        |
-| onlyOnRelease    | Optimize only on release                                |         true or false         | false                                     |
-| logLevel         | The level of logging output                             | none, debug, info or error | info                                      |
-
+| optimizer        | Compressor to use                                       |      zopfli or pngtastic     | zopfli                                    |
+| compressionLevel | Compression level (useful for pngtastic compressor)     |         0-9 allowed          | Brute forces with every allowed value     |
+| iterations       | Compression iterations number (useful for zopfli)       |             > 0              | 15                                        |
+| onlyOnRelease    | Only release signed optimization                        |         true or false        | false                                     |
+| logLevel         | Output Logging level                                   | none, debug, info or error   | info                                      |
 License
 -------
-
-    Copyright 2016 Fabio Santana (fabiomsr)
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
-
+Copyright 2016 Fabio Santana (fabiomsr)
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+   http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 [Pngtastic]: https://github.com/depsypher/pngtastic
 [Zopfli]: https://github.com/google/zopfli
 [Colt McAnlis]: https://medium.com/@duhroach
