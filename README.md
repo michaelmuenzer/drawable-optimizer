@@ -9,21 +9,24 @@ It works over the folder in which the resource merging was executed, by default 
 
 By doing this, all original png files are kept under /res folder and this optimization could be undone just cleaning the project.
 
-In order to perform an optimization task, this plugin makes use of the Pngtastic library, this library
-is similar to PNG and written in java. It offers 3 different ways of file compression:
+In order to perform an optimization task, this plugin offers 2 different ways of file compression:
 
-  * Pngtastic Default Compression.
-  * ImageOptim Compression.
-  * Zopfli, which offers ridiculously good compression ratios in exchange of low compression speed.
+  * [Pngtastic] library, which brings its own compressor.
+  * [Zopfli], which offers ridiculously good compression ratios in exchange of low compression speed.
 
 ## Why should I use this plugin ?
 
 You can find an explanation from [Colt McAnlis] about why you should optimize your pngs [Reducing PNG file Size] and [Smaller PNGs, and Android’s AAPT tool]
 
+## Example 
+
+
 ## Usage
+
 Just click on __Sync project with gradle files__ button
 
 ## Download & Installation
+
 In `build.gradle`
 ```groovy
 buildscript {
@@ -31,7 +34,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.fabiomsr:drawable-optimizer-gradle-plugin:1.0.0'
+        classpath 'org.fabiomsr:drawable-optimizer-gradle-plugin:1.0.2'
     }
 }
 ```
@@ -43,7 +46,9 @@ apply plugin: 'org.fabiomsr.drawableoptimizer'
 ## Configuration
 No configuration is needed by default, but if you want you can configure the following parameters.
 Every time the configuration changes the project must be cleaned.
+
 In `app\build.gradle`
+
 ```groovy
 drawableOptimizer {
     optimizer = 'zopfli'
@@ -60,18 +65,27 @@ drawableOptimizer {
 | iterations       | Compression iterations number (useful for zopfli)       |             > 0              | 15                                        |
 | onlyOnRelease    | Only release signed optimization                        |         true or false        | false                                     |
 | logLevel         | Output Logging level                                   | none, debug, info or error   | info                                      |
+
+
 License
 -------
-Copyright 2016 Fabio Santana (fabiomsr)
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-   http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+
+    Copyright 2016 Fabio Santana (fabiomsr)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
+
 [Pngtastic]: https://github.com/depsypher/pngtastic
 [Zopfli]: https://github.com/google/zopfli
 [Colt McAnlis]: https://medium.com/@duhroach

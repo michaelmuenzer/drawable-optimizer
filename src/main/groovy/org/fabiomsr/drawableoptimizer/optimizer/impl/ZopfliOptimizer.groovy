@@ -18,11 +18,10 @@ class ZopfliOptimizer implements Optimizer{
         ZopfliFileSystemUtils.copyZopfliToBuildFolder(project)
 
         files.each {
-
             def originalFileSize = it.length()
 
             def zopfliPath = ZopfliFileSystemUtils.getZopfliFilePath(project)
-            Process process = new ProcessBuilder(zopfliPath, "-y", it.absolutePath, it.absolutePath).start()
+            Process process = new ProcessBuilder(zopfliPath, "-y", "--iterations=${iterations}", it.absolutePath, it.absolutePath).start()
             process.waitFor();
 
             def optimizedFileSize = new File(it.absolutePath).length()

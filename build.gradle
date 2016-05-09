@@ -1,5 +1,5 @@
 
-def pluginVersion = '1.0.2'
+def pluginVersion = '1.0.3'
 
 group 'org.fabiomsr'
 version pluginVersion
