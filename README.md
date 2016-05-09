@@ -18,7 +18,14 @@ In order to perform an optimization task, this plugin offers 2 different ways of
 
 You can find an explanation from [Colt McAnlis] about why you should optimize your pngs [Reducing PNG file Size] and [Smaller PNGs, and Android’s AAPT tool]
 
-## Example 
+## Taste
+
+| Original                                   | Optimized                                    |
+|--------------------------------------------|----------------------------------------------|
+|                   525.51k                  |                    473.20k                   |
+| ![Original Image](/art/lenna_original.png) | ![Optimized Image](/art/lenna_optimized.png) |
+
+
 
 
 ## Usage
