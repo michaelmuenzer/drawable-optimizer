@@ -1,8 +1,9 @@
-## Override
+Drawable Optimizer
+==================
 
 Gradle plugin to optimize png files within an Android project.
 
-## How it works ??
+## How it works ?
 
 With this plugin you will be able to optimize the png files size inside your AndroidStudio project.
 It works over the folder in which the resource merging was executed, by default in a Mac OSX system is `app\build\intermediates\res\merged`.
