@@ -1,7 +1,7 @@
 Drawable Optimizer
 ==================
 
-Gradle plugin to optimize png files within an Android project.
+Gradle plugin to optimize png files and reduce resultant apk size within an Android project.
 
 ## How it works ?
 
