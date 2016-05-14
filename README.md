@@ -1,7 +1,9 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-drawable--optimizer-green.svg?style=true)](https://android-arsenal.com/details/1/3586)
+
 Drawable Optimizer
 ==================
 
-Gradle plugin to optimize png files within an Android project.
+Gradle plugin to optimize png files and reduce resultant apk size within an Android project.
 
 ## How it works ?
 
