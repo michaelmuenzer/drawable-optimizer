@@ -1,5 +1,5 @@
 
-def pluginVersion = '1.0.3'
+def pluginVersion = '1.0.4'
 
 group 'org.fabiomsr'
 version pluginVersion
@@ -17,6 +17,16 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+
+compileJava {
+    sourceCompatibility  '1.6'
+    targetCompatibility  '1.6'
+}
+
+compileGroovy {
+    sourceCompatibility  '1.6'
+    targetCompatibility  '1.6'
+}
 
 
 repositories {
@@ -92,7 +102,7 @@ bintray {
 
         version {
             name = pluginVersion
-            desc = 'Drawable Optimizer Gradle Plugin 1.0 Snapshot'
+            desc = 'Drawable Optimizer Gradle Plugin'
             vcsTag = pluginVersion
             attributes = ['gradle-plugin': 'org.fabiomsr:drawable-optimizer-gradle-plugin']
         }
