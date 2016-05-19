@@ -44,7 +44,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.fabiomsr:drawable-optimizer-gradle-plugin:1.0.3'
+        classpath 'org.fabiomsr:drawable-optimizer-gradle-plugin:1.0.4'
     }
 }
 ```
