@@ -26,7 +26,6 @@ class DrawableOptimizerPlugin implements Plugin<Project> {
 	private
 	static void applyAndroid(Project project, DomainObjectCollection<BaseVariant> variants) {
 		project.extensions.create('drawableOptimizer', DrawableOptimizerExtension)
-
 		def ext = project.extensions['drawableOptimizer'] as DrawableOptimizerExtension
 
 		variants.all { variant ->
