@@ -64,7 +64,6 @@ drawableOptimizer {
     optimizer = 'zopfli'
     compressionLevel = 9
     iterations = 15
-    onlyOnRelease = true
     logLevel = 'info'
 }
 ```
@@ -73,7 +72,6 @@ drawableOptimizer {
 | optimizer        | Compressor to use                                       |      zopfli or pngtastic     | zopfli                                    |
 | compressionLevel | Compression level (useful for pngtastic compressor)     |         0-9 allowed          | Brute forces with every allowed value     |
 | iterations       | Compression iterations number (useful for zopfli)       |             > 0              | 15                                        |
-| onlyOnRelease    | Only release signed optimization                        |         true or false        | false                                     |
 | logLevel         | Output Logging level                                   | none, debug, info or error   | info                                      |
 
 
